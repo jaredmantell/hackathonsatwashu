@@ -1,9 +1,11 @@
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
-import { defineConfig } from "astro/config";
+import { defineConfig, passthroughImageService } from "astro/config";
 
-// https://astro.build/config
 export default defineConfig({
   site: "https://jaredmantell.github.io/",
   integrations: [tailwind(), icon()],
+  image: {
+    service: passthroughImageService(),
+  },
 });
