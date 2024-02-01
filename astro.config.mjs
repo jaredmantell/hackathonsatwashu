@@ -4,6 +4,6 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://hackathonsatwashu.github.io/",
+  site: "https://jaredmantell.github.io/",
   integrations: [tailwind(), icon()],
 });
