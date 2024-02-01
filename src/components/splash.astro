@@ -1,0 +1,94 @@
+---
+import { Image } from "astro:assets";
+import astronautImage from "~/assets/astronaut.png";
+import logoImage from "~/assets/logo.png"; // Added import for logo.png
+import HeroImage from "~/components/hero-image.astro";
+import Starfield from "~/components/starfield.astro"; // Reintroduced Starfield component
+import GitHubCorner from "./github-corner.astro";
+
+const widths = [450, 800];
+const sizes = "(min-width: 640px) 42vw, 67vw";
+---
+
+<section class="relative bg-black flex flex-col items-center justify-center h-screen">
+  <Starfield /> 
+  <div class="logo-and-text-container" style="position: relative; z-index: 10; transform: translateY(-70px);">
+    <Image
+      class="w-48 h-auto mx-auto"
+      src={logoImage}
+      alt="Logo"
+      style="z-index: 10; position: relative;"
+    />
+    <div class="gradient-text font-extrabold tracking-tighter text-4xl mt-4" style="z-index: 10; position: relative;">
+      washu's travel<br>hackathon team. <!-- Updated text layout -->
+    </div>
+  </div>
+  <!-- Wrap the button and astronaut in a div and apply flexbox -->
+  <div class="relative flex items-center justify-center mt-8" style="z-index: 10; width: 200px; height: 60px;">
+    <!-- Button with explicit size to prevent distortion -->
+    <a href="https://discord.gg/e4makf3y" class="bg-[#5865F2] text-white font-bold py-1 px-3 rounded-lg border-2 border-white" style="z-index: 10;">
+      Click to Join
+    </a>
+    <!-- New div for astronaut under the button -->
+    <div class="astronaut-container bounce-slow" style="position: absolute; width: 60px; height: 60px; top: 45%; left: 70%; transform: translate(-50%, -50%); z-index: 20;">
+      <a href="https://discord.gg/e4makf3y" style="transform: scale(3.9);">
+        <Image
+          class="w-32 h-auto object-cover"
+          src={astronautImage}
+          alt="A floating astronaut in a space suit"
+        />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes float {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(0, 20px, 0);
+    }
+  }
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+  .bounce {
+    animation: bounce 3s ease-in-out infinite;
+  }
+  @media (min-width: 640px) {
+    section {
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+    a:first-of-type {
+      order: 2;
+    }
+    a:last-of-type {
+      order: 3;
+    }
+  }
+  /* Ensure the "Click to Join" button is always visible */
+  a[href="https://discord.gg/e4makf3y"] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  .bounce-slow {
+    animation: bounce-slow 4s ease-in-out infinite;
+  }
+</style>
